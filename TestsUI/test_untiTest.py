@@ -11,5 +11,6 @@ def test_login(playwright:Playwright):
     #time.sleep(5)
     #auth.logout()
     updateTimesheet(page).punchIn()
+    updateTimesheet(page).updateInDate(year='2020',month='December',day='25',comment='testComment')
     time.sleep(5)
     
