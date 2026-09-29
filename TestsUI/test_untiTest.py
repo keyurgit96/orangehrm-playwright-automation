@@ -8,9 +8,12 @@ import time
 def test_login(playwright:Playwright):
     auth=authentication("Admin","admin123",playwright,"https://opensource-demo.orangehrmlive.com/")
     page=auth.login()
-    #time.sleep(5)
-    #auth.logout()
-    updateTimesheet(page).punchIn()
-    updateTimesheet(page).updateInDate(year='2020',month='December',day='25',comment='testComment')
+    #updateTimesheet(page).punchIn()
+    #updateTimesheet(page).updateInDate(year='2026',month='september',day='27',comment='testComment')
+    editUserDetails(page).myInfo()
+    editUserDetails(page).uploadAttachment()
+    #recruitment(page).recruitmentPage()
+    #recruitment(page).addCandidate(jobtitle="Account Assistant",vacancy="Software Engineer")
     time.sleep(5)
+    auth.logout()
     
