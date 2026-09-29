@@ -12,6 +12,8 @@ def test_login(playwright:Playwright):
     #updateTimesheet(page).updateInDate(year='2026',month='september',day='27',comment='testComment')
     editUserDetails(page).myInfo()
     editUserDetails(page).uploadAttachment()
-    time.sleep(10)
+    #recruitment(page).recruitmentPage()
+    #recruitment(page).addCandidate(jobtitle="Account Assistant",vacancy="Software Engineer")
+    time.sleep(5)
     auth.logout()
     
