@@ -7,7 +7,7 @@ class updateTimesheet:
             self.page.locator(".orangehrm-attendance-card-action").click()
         else:
             raise AssertionError(f"User Status: {status}")
-    def updateInDate(self,year,month,day,comment=''):
+    def updateInDate(self,year,month,day,comment=None):
         if type(year)==int:
             year=str(year)
         if type(day)==int:
@@ -18,7 +18,9 @@ class updateTimesheet:
         self.page.locator(".oxd-calendar-selector-month").click()
         self.page.get_by_text(month).last.click()
         self.page.get_by_text(day,exact=True).last.click()
-        self.page.get_by_placeholder('Type here').fill(comment)
+        if comment!=None:
+            self.page.get_by_placeholder('Type here').fill(comment)
         self.page.get_by_role('button',name='In').click()
-        status=self.page.locator(".orangehrm-attendance-card-state").inner_text().lower()
-        assert status == 'punched in'
+        status=self.page.locator(".orangehrm-main-title").inner_text().lower()
+        import time ; time.sleep(5)
+        assert status == 'punch out'
