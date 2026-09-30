@@ -1,11 +1,13 @@
 class recruitment:
-    def __init__(self,page):
-        self.page=page
-    
+    def __init__(self, page):
+        self.page = page
+
     def recruitmentPage(self):
         self.page.get_by_text("Recruitment").click()
-    
-    def addCandidate(self,jobtitle=None,vacancy=None,hiringManager=None,status=None):
+
+    def addCandidate(
+        self, jobtitle=None, vacancy=None, hiringManager=None, status=None
+    ):
         self.page.get_by_text("Candidates").first.click()
         if jobtitle:
             self.page.locator(".oxd-select-text-input").nth(0).click()
