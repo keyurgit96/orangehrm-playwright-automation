@@ -1,6 +1,6 @@
 from playwright.sync_api import Playwright
 import pytest
-from POM import *
+from src.pages import *
 import time
 
 
