@@ -1,11 +1,12 @@
-from .authentication import authentication
-from .recruitment import recruitment
-from .timesheet import updateTimesheet
-from .userInfo import editUserDetails
+from .authentication import *
+from .recruitment import *
+from .timesheet import *
+from .userInfo import *
 
 __all__ = [
-    "authentication",
-    "editUserDetails",
+    "sideBar",
+    "userMenu",
     "recruitment",
     "updateTimesheet",
+    "loginPage",
 ]
