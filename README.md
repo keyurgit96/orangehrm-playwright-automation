@@ -1,3 +1,5 @@
+DISCLAIMER: I know .env file should not be pushed to git and should be added to .gitingnore, but I have pushed it just to make people understand how it works
+
 orangehrm-playwright-automation/
 ├── src/
 │   ├── __init__.py

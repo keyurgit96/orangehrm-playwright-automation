@@ -1,0 +1,27 @@
+{
+    "credentials": [
+        {
+            "username": "Admin",
+            "password": "Admin123"
+        },
+        {
+            "username": "WrongUser",
+            "password": "WrongPassword"
+        },
+        {
+            "username": "Admin",
+            "password": ""
+        },
+        {
+            "username": "",
+            "password": "OnlyPassword"
+        },
+        {
+            "username": "WithoutPassword",
+            "password": ""
+        }
+    ],
+    "url": {
+        "baseUrl": "https://opensource-demo.orangehrmlive.com/"
+    }
+}
