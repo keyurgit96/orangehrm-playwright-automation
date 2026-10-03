@@ -11,5 +11,5 @@ __all__ = [
     "markAttendance",
     "attendanceDetails",
     "userMenu",
-    "loginDetails"
+    "loginDetails",
 ]
