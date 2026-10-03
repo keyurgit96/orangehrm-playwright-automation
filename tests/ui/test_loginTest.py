@@ -1,4 +1,3 @@
-
 from src.pages import *
 from src.utils import *
 import pytest
@@ -6,8 +5,8 @@ from playwright.sync_api import Playwright
 import json
 import os
 
-selectEnv('custom').load()
-path=os.getenv("DATA_BASE")
+selectEnv().load()
+path = os.getenv("DATA_BASE")
 
 with open(path) as f:
     credentials_data = json.load(f)
@@ -22,10 +21,10 @@ def test_login(playwright: Playwright, page, credentials):
     loginDetails(
         page, username=credentials["username"], password=credentials["password"]
     ).login()
-    page.context.storage_state(path=os.getenv("AUTH"))
-    
+
+
 @pytest.mark.correctCredentials
 def test_loginCorrect(playwright: Playwright, page):
     page.goto(credentials_data["url"]["baseUrl"])
-    loginDetails(page,username='Admin',password='admin123').login()
+    loginDetails(page, username="Admin", password="admin123").login()
     page.context.storage_state(path=os.getenv("AUTH"))
