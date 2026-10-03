@@ -8,7 +8,7 @@ class loginDetails:
         self._loginButton = page.get_by_role("button", name="Login")
         self.username = username
         self.password = password
-        self.page=page
+        self.page = page
 
     def login(self):
         self.page.wait_for_load_state("domcontentloaded")

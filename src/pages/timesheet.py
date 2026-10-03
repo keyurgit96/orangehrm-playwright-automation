@@ -1,5 +1,6 @@
 from src.pages.basePage import basePage
 
+
 class markAttendance(basePage):
     def __init__(self, page):
         super().__init__(page)
@@ -29,7 +30,7 @@ class attendanceDetails:
         self.day = day
         self.comment = comment
 
-    def updateInDetails(self,inButton=True):
+    def updateInDetails(self, inButton=True):
         if type(self.year) == int:
             year = str(self.year)
         if type(self.day) == int:
@@ -47,5 +48,5 @@ class attendanceDetails:
         elif not inButton:
             self._outButton.click()
 
-    def updateOutDetails(self,inButton=True):
+    def updateOutDetails(self, inButton=True):
         self.updateInDetails(False)

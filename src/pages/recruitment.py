@@ -2,7 +2,7 @@ class recruitmentDetails:
     def __init__(
         self, page, jobtitle=None, vacancy=None, hiringManager=None, status=None
     ):
-        self.page=page
+        self.page = page
         self.jobtitle = jobtitle
         self.vacancy = vacancy
         self.hiringManager = hiringManager
