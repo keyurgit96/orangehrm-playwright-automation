@@ -1,8 +1,15 @@
 import pytest
+import json
+from playwright.sync_api import Playwright
+
+
+@pytest.fixture(scope='session')
+def credentials(request):
+    return request.param
 
 
 @pytest.fixture(scope="session")
-def browser_context_args(playwright, browser="chrome"):
+def page(playwright: Playwright, browser="chrome"):
     if browser == "chrome":
         browser = playwright.chromium.launch(headless=False)
     elif browser == "firefox":

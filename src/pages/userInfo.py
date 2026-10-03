@@ -1,19 +1,10 @@
-class sideBar:
+from .basePage import basePage
+
+
+class userMenu(basePage):
     def __init__(self, page):
-        self._myInfo = page.get_by_text("My Info")
-        self._recruitment = page.get_by_text("Recruitment")
-
-    def myInfo(self):
-        self._myInfo.click()
-
-    def recruitment(self):
-        self._recruitment.click()
-
-
-class userMenu:
-    def __init__(self, page):
-        self._logoutButton = page.locator(".oxd-userdropdown-name")
-        self._logoutMenu = page.get_by_text("Logout")
+        super().__init__(page)
+        self._logoutMenu = self.page.get_by_text("Logout")
 
     def logout(self):
         try:

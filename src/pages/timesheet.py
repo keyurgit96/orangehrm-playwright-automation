@@ -1,10 +1,8 @@
-class markAttendance:
+from src.pages.basePage import basePage
+
+class markAttendance(basePage):
     def __init__(self, page):
-        self.page = page
-        self._punchButton = page.locator(".orangehrm-attendance-card-action")
-        self._status = self.page.locator(
-            ".orangehrm-attendance-card-state"
-        ).inner_text()
+        super().__init__(page)
 
     def punchIn(self, state="punched out"):
         if self._status.lower() == state:
