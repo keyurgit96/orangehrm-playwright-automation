@@ -12,10 +12,14 @@ pipeline{
         stage('Parallel exce'){
             parallel
             { stage('print1'){
-                echo "print1-${params.BROWSER}"
+            steps{      
+                 echo "print1-${params.BROWSER}"
+            }
             }
             stage('print2'){
+                steps{
                 echo "print2-${params.BROWSER}"
+            }
             }
         }
     }
