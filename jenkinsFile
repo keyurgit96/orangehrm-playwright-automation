@@ -1,0 +1,39 @@
+pipeline{
+    agent any
+    parameters{
+        string(name:"BROWSER",defaultValue:"chromium",description:"Browser to test")
+    }
+    stages{
+        stage("Checkout"){
+            steps{
+                echo 'checkoutstage'
+            }
+        }
+        stage('Parallel exce'){
+            parallel
+            { stage('print1'){
+                echo "print1-${params.BROWSER}"
+            }
+            stage('print2'){
+                echo "print2-${params.BROWSER}"
+            }
+        }
+    }
+    post{
+        always{
+            echo 'Pipeline completed'
+        }
+        failure{
+            echo 'Pipeline failed'
+        }
+        success{
+            echo 'Pipeline success'
+        }
+        unstable{
+            echo 'Pipeline unstable'
+        }
+        aborted{
+            echo 'Pipeline aborted'
+        }
+    }
+}
