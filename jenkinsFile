@@ -3,6 +3,9 @@ pipeline{
     parameters{
         string(name:"BROWSER",defaultValue:"chromium",description:"Browser to test")
     }
+    environment{
+        userID=credentials('UsernamePassword')
+    }
     stages{
         stage("Checkout"){
             steps{
@@ -19,6 +22,9 @@ pipeline{
             stage('print2'){
                 steps{
                 echo "print2-${params.BROWSER}"
+            }
+            stage('credentialsCheck'){
+                sh "echo 'Fectched usename: $userID_USR'"
             }
             }
         }
