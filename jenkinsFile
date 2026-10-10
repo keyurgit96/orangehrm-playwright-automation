@@ -27,17 +27,16 @@ pipeline {
                     steps {
                         echo "print2-${params.BROWSER}"
                     }
-                    }
                 }
                 stage('credentialsCheck') {
                     steps {
-                        sh "echo 'Fetched username: ${userID_USR}'"
-                        sh "echo 'Fetched password: ${userID_PSW}'"
+                        sh 'echo "Fetched username: $userID_USR"'
+                        sh 'echo "Fetched password: $userID_PSW"'
                     }
                 }
-            }
-        }
-    }
+            } 
+        } 
+    } 
 
     post {
         always {
@@ -56,3 +55,4 @@ pipeline {
             echo 'Pipeline aborted'
         }
     }
+}
