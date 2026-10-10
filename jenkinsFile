@@ -1,53 +1,59 @@
-pipeline{
+pipeline {
     agent any
-    parameters{
-        string(name:"BROWSER",defaultValue:"chromium",description:"Browser to test")
+
+    parameters {
+        string(name: "BROWSER", defaultValue: "chromium", description: "Browser to test")
     }
-    environment{
-        userID=credentials('UsernamePassword')
+
+    environment {
+        userID = credentials('UsernamePassword')
     }
-    stages{
-        stage("Checkout"){
-            steps{
+
+    stages {
+        stage("Checkout") {
+            steps {
                 echo 'checkoutstage'
             }
         }
-        stage('Parallel exce'){
-            parallel
-            { stage('print1'){
-            steps{      
-                 echo "print1-${params.BROWSER}"
-            }
-            }
-            stage('print2'){
-                steps{
-                echo "print2-${params.BROWSER}"
-            }
-            stage('credentialsCheck'){
-                steps{
-                    sh "echo 'Fectched usename: ${userID_USR}'"
-                    sh "echo 'Fectched password: ${userID_PSW}'"
+
+        stage('Parallel exce') {
+            parallel {
+                stage('print1') {
+                    steps {
+                        echo "print1-${params.BROWSER}"
+                    }
+                }
+                stage('print2') {
+                    steps {
+                        echo "print2-${params.BROWSER}"
+                    }
+                    }
+                }
+                stage('credentialsCheck') {
+                    steps {
+                        sh "echo 'Fetched username: ${userID_USR}'"
+                        sh "echo 'Fetched password: ${userID_PSW}'"
+                    }
                 }
             }
         }
     }
-    }
-    post{
-        always{
+
+    post {
+        always {
             echo 'Pipeline completed'
         }
-        failure{
+        failure {
             echo 'Pipeline failed'
         }
-        success{
+        success {
             echo 'Pipeline success'
         }
-        unstable{
+        unstable {
             echo 'Pipeline unstable'
         }
-        aborted{
+        aborted {
             echo 'Pipeline aborted'
         }
     }
-}
 }
