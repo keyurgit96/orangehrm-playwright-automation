@@ -24,8 +24,10 @@ pipeline{
                 echo "print2-${params.BROWSER}"
             }
             stage('credentialsCheck'){
-                sh "echo 'Fectched usename: $userID_USR'"
-            }
+                steps{
+                    sh "echo 'Fectched usename: ${userID_USR}'"
+                    sh "echo 'Fectched password: ${userID_PSW}'"
+                }
             }
         }
     }
