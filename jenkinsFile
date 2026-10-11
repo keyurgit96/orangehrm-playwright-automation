@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker{
+        docker {
             image 'mcr.microsoft.com/playwright/python:v1.40.0-focal'
         }
     }
@@ -18,8 +18,7 @@ pipeline {
             steps {
                 sh '''
                     pip install -r requirements.txt
-                    playwright install
-                    '''
+                '''
             }
         }
 
@@ -27,7 +26,7 @@ pipeline {
             parallel {
                 stage('print1') {
                     steps {
-                        sh "pytest -v -m 'genericTest'"
+                        sh "pytest -v -m 'genericTest' --browser ${params.BROWSER}"
                     }
                 }
                 stage('print2') {
@@ -37,9 +36,9 @@ pipeline {
                 }
                 stage('credentialsCheck') {
                     steps {
-                        // Single quotes ensure environment variables pass directly to Linux shell
-                        sh 'echo "Fetched username: '$userID_USR'"'
-                        sh 'echo "Fetched password: '$userID_PSW'"'
+                        // Use double quotes for the sh block so Groovy safely passes the env variables to bash
+                        sh "echo \"Fetched username: ${env.userID_USR}\""
+                        sh "echo \"Fetched password: ${env.userID_PSW}\""
                     }
                 }
             } // End of parallel block
