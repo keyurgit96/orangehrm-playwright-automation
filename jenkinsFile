@@ -25,7 +25,7 @@ pipeline {
             parallel {
                 stage('print1') {
                     steps {
-                        sh "pytest -v -m 'genericTest' --browser ${params.BROWSER}"
+                        sh "python -m pytest -v -m 'genericTest'"
                     }
                 }
                 stage('print2') {
