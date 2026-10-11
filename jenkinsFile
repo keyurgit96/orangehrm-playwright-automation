@@ -16,7 +16,7 @@ pipeline {
         stage("Pre-requisites") {
             steps {
                 sh '''
-                    pip install -r ./src/utils/requirements.txt
+                    python3 -m pip install -r src/utils/requirements.txt
                 '''
             }
         }
@@ -25,7 +25,7 @@ pipeline {
             parallel {
                 stage('print1') {
                     steps {
-                        sh "python -m pytest -v -m 'genericTest'"
+                        sh "python3 -m pytest -v -m 'genericTest'"
                     }
                 }
                 stage('print2') {
