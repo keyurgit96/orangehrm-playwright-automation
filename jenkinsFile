@@ -25,7 +25,10 @@ pipeline {
             parallel {
                 stage('print1') {
                     steps {
-                        sh "python3 -m pytest -v -m 'genericTest'"
+                        sh '''
+                            pip install pytest
+                            python3 -m pytest -v -m 'genericTest'
+                            '''
                     }
                 }
                 stage('print2') {
