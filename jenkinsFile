@@ -28,6 +28,7 @@ pipeline {
                         sh '''
                             pip install playwright pytest-playwright
                             playwright install
+                            pip install python-dotenv
                             python3 -m pytest -v -m 'genericTest'
                             '''
                     }
