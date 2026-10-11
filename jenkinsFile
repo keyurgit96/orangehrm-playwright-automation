@@ -16,7 +16,7 @@ pipeline {
         stage("Pre-requisites") {
             steps {
                 sh '''
-                    pip install -r requirements.txt
+                    pip install -r ./src/utils/requirements.txt
                 '''
             }
         }
