@@ -4,11 +4,11 @@ import pytest
 from playwright.sync_api import Playwright
 import json
 import os
-
+'''
 selectEnv().load()
 path = os.getenv("DATA_BASE")
-
-with open(path) as f:
+'''
+with open('./test_data/data.json') as f:
     credentials_data = json.load(f)
     credentials = credentials_data["credentials"]
 

@@ -24,7 +24,7 @@ python -m venv venv
 .\venv\Scripts\activate       # On Linux/macOS: source venv/bin/activate
 
 # 2. Install dependencies & browsers
-pip install playwright pytest pytest-order python-dotenv
+pip install -r requirements.txt
 playwright install
 ```
 
@@ -66,32 +66,56 @@ playwright show-trace logs/<trace_file>.zip
 
 ### 📁 Project Structure
 
-
+```text
 orangehrm-playwright-automation/
 ├── src/
-│   ├── __init__.py
-│   ├── pages/                  
+│   ├── api/                     # 🌐 [API] Service Object Model (Endpoint clients)
+│   │   ├── __init__.py
+│   │   ├── base_api.py          # Base Playwright APIRequestContext wrapper
+│   │   ├── recruitment_api.py   # Recruitment API service
+│   │   ├── timesheet_api.py     # Timesheet API service
+│   │   └── user_api.py          # User management API service
+│   ├── pages/                   # 🖥️ [UI] Page Object Model (Locators & user actions)
 │   │   ├── __init__.py
 │   │   ├── base_page.py
 │   │   ├── authentication.py
 │   │   ├── recruitment.py
 │   │   ├── timesheet.py
 │   │   └── user_info.py
-│   ├── config/
-│   │   └── settings.py          # Base URLs, timeouts, env vars
-│   └── utils/
+│   ├── config/                  # ⚙️ [Shared] Settings & Route Constants
+│   │   ├── settings.py          # Base URLs, timeouts, environment variables
+│   │   └── endpoints.py         # API route endpoints
+│   └── utils/                   # 🛠️ [Shared] Helpers & Utilities
 │       ├── __init__.py
-│       └── helpers.py           # Logging, custom helpers
-├── tests/                       # Renamed from TestsUI/
-│   ├── conftest.py              # Pytest fixtures & setup
-│   └── ui/
-│       ├── test_auth.py
-│       ├── test_recruitment.py
-│       └── test_timesheet.py
-├── test_data/                   # Upload sample files, test payloads
-├── pytest.ini                   # Updated with pythonpath = src
+│       ├── helpers.py           # Logger, env loader (selectEnv)
+│       └── schema_validator.py  # JSON schema validator for API responses
+├── tests/
+│   ├── conftest.py              # Global Pytest fixtures & session setup
+│   ├── ui/                      # 🖥️ [UI] Functional UI Test Suites
+│   │   ├── test_auth.py
+│   │   ├── test_recruitment.py
+│   │   └── test_timesheet.py
+│   └── api/                     # 🌐 [API] API Test Suites & Contract Tests
+│       ├── __init__.py
+│       ├── conftest.py          # API fixtures (api_context, auth_api_context)
+│       ├── test_auth_api.py
+│       ├── test_recruitment_api.py
+│       └── test_users_api.py
+├── test_data/
+│   ├── auth.json                # Shared browser storage state (session reuse across UI & API)
+│   ├── data.json                # UI test datasets
+│   └── api/                     # 🌐 [API] API Data & Contracts
+│       ├── payloads/            # POST / PUT request JSON payloads
+│       └── schemas/             # Response JSON schemas for schema validation
+├── pytest.ini                   # Pytest test discovery & markers
 ├── requirements.txt
 └── README.md
 ```
+
+| Layer | Type | Location | Purpose |
+| :--- | :--- | :--- | :--- |
+| 🖥️ **UI Automation** | `[UI]` | `src/pages/`, `tests/ui/` | Page Object Model, end-to-end browser workflows |
+| 🌐 **API Automation** | `[API]` | `src/api/`, `tests/api/`, `test_data/api/` | Playwright `APIRequestContext`, endpoint testing, JSON schema validation |
+| ⚙️ **Shared Core** | `[Shared]` | `src/config/`, `src/utils/`, `auth.json` | Environment loader, custom logging, and shared session tokens |
 
 ---
