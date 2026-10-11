@@ -1,0 +1,25 @@
+# Environment files
+.env
+.env.*
+*.env
+*.enc
+
+# Python cache & bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Pytest & linters cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+
