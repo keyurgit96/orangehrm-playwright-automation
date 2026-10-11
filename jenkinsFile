@@ -26,7 +26,8 @@ pipeline {
                 stage('print1') {
                     steps {
                         sh '''
-                            pip install pytest
+                            pip install playwright pytest-playwright
+                            playwright install
                             python3 -m pytest -v -m 'genericTest'
                             '''
                     }
