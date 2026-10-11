@@ -26,10 +26,11 @@ pipeline {
                 stage('print1') {
                     steps {
                         sh '''
+                            apt-get update && apt-get install -y xvfb
                             pip install playwright pytest-playwright
                             playwright install
                             pip install python-dotenv
-                            python3 -m pytest -v -m 'genericTest'
+                            xvfb-run --auto-servernum python3 -m pytest -v -m 'genericTest'
                             '''
                     }
                 }
