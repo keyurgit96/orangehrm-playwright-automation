@@ -1,10 +1,9 @@
 pipeline {
     agent {
-        docker{
+        docker {
             image 'mcr.microsoft.com/playwright/python:v1.40.0-focal'
         }
     }
-
     parameters {
         string(name: "BROWSER", defaultValue: "chromium", description: "Browser to test")
     }
@@ -16,10 +15,9 @@ pipeline {
     stages {
         stage("Pre-requisites") {
             steps {
-                /*sh '''
-                    pip install -r requirements.txt
-                    playwright install
-                    '''*/
+                sh '''
+                    python3 -m pip install -r src/utils/requirements.txt
+                '''
             }
         }
 
@@ -27,7 +25,13 @@ pipeline {
             parallel {
                 stage('print1') {
                     steps {
-                        sh "pytedst -v -m 'genericTest'"
+                        sh '''
+                            apt-get update && apt-get install -y xvfb
+                            pip install playwright pytest-playwright
+                            playwright install
+                            pip install python-dotenv
+                            xvfb-run --auto-servernum python3 -m pytest -v -m 'genericTest'
+                            '''
                     }
                 }
                 stage('print2') {
@@ -37,9 +41,9 @@ pipeline {
                 }
                 stage('credentialsCheck') {
                     steps {
-                        // Single quotes ensure environment variables pass directly to Linux shell
-                        sh 'echo "Fetched username: '$userID_USR'"'
-                        sh 'echo "Fetched password: '$userID_PSW'"'
+                        // Use double quotes for the sh block so Groovy safely passes the env variables to bash
+                        sh "echo \"Fetched username: ${env.userID_USR}\""
+                        sh "echo \"Fetched password: ${env.userID_PSW}\""
                     }
                 }
             } // End of parallel block
