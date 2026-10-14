@@ -4,6 +4,9 @@ pipeline {
             image 'mcr.microsoft.com/playwright/python:v1.40.0-focal'
         }
     }
+    triggers {
+        githubPush()
+    }
     parameters {
         string(name: "BROWSER", defaultValue: "chromium", description: "Browser to test")
     }
