@@ -16,10 +16,10 @@ pipeline {
     stages {
         stage("Pre-requisites") {
             steps {
-                sh '''
+                /*sh '''
                     pip install -r requirements.txt
                     playwright install
-                    '''
+                    '''*/
             }
         }
 
@@ -27,7 +27,7 @@ pipeline {
             parallel {
                 stage('print1') {
                     steps {
-                        sh "pytest -v -m 'genericTest'"
+                        sh "pytedst -v -m 'genericTest'"
                     }
                 }
                 stage('print2') {
@@ -52,6 +52,8 @@ pipeline {
         }
         failure {
             echo 'Pipeline failed'
+            emailext(subject: "Pipeline failed",to:'keyurkulkarni96@gmail.com',
+                    body:'Pipeline failed')
         }
         success {
             echo 'Pipeline success'
