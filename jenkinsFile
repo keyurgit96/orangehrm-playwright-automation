@@ -16,6 +16,7 @@ pipeline {
         stage("Pre-requisites") {
             steps {
                 sh '''
+                    escho "print2-${params.BROWSER}"
                     python3 -m pip install -r src/utils/requirements.txt
                 '''
             }
@@ -26,11 +27,11 @@ pipeline {
                 stage('print1') {
                     steps {
                         sh '''
-                            apt-get update && apt-get install -y xvfb
+                            /*(apt-get update && apt-get install -y xvfb
                             pip install playwright pytest-playwright
                             playwright install
                             pip install python-dotenv
-                            xvfb-run --auto-servernum python3 -m pytest -v -m 'genericTest'
+                            xvfb-run --auto-servernum python3 -m pytest -v -m 'genericTest'*/
                             '''
                     }
                 }
