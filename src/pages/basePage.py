@@ -7,7 +7,11 @@ class basePage:
         self._punchButton = page.locator(".orangehrm-attendance-card-action")
         self._status_locator = self.page.locator(
             ".orangehrm-attendance-card-state"
-        ).inner_text()
+        )
+
+    @property
+    def _status(self):
+        return self._status_locator.inner_text()
 
     def myInfo(self):
         self._myInfo.click()

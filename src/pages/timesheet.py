@@ -6,7 +6,7 @@ class markAttendance(basePage):
         super().__init__(page)
 
     def punchIn(self, state="punched out"):
-        if self._status.lower() == state:
+        if self._status.lower() == state.lower():
             self._punchButton.click()
         else:
             raise AssertionError(f"User Status: {self._status}")
@@ -31,10 +31,8 @@ class attendanceDetails:
         self.comment = comment
 
     def updateInDetails(self, inButton=True):
-        if type(self.year) == int:
-            year = str(self.year)
-        if type(self.day) == int:
-            day = str(self.day)
+        year = str(self.year)
+        day = str(self.day)
         self._dateInput.click()
         self._yearSelector.click()
         self._dateSelector(year).last.click()

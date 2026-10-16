@@ -58,5 +58,5 @@ class userInfo:
         #file_input.set_input_files(file_path)#Doesn't work
         """
         if comment:
-            self.__comment.fill(comment)
-        self.saveButton.click()
+            self._comment.fill(comment)
+        self._saveButton.click()

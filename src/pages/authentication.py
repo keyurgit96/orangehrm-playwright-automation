@@ -1,5 +1,3 @@
-from src import pages
-
 
 class loginDetails:
     def __init__(self, page, username, password):

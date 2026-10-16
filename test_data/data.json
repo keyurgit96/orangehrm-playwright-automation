@@ -2,26 +2,31 @@
     "credentials": [
         {
             "username": "Admin",
-            "password": "Admin123"
+            "password": "Admin123",
+            "expected": "invalid"
         },
         {
             "username": "WrongUser",
-            "password": "WrongPassword"
+            "password": "WrongPassword",
+            "expected": "invalid"
         },
         {
             "username": "Admin",
-            "password": ""
+            "password": "",
+            "expected": "invalid"
         },
         {
             "username": "",
-            "password": "OnlyPassword"
+            "password": "OnlyPassword",
+            "expected": "invalid"
         },
         {
             "username": "WithoutPassword",
-            "password": ""
+            "password": "",
+            "expected": "invalid"
         }
     ],
     "url": {
         "baseUrl": "https://opensource-demo.orangehrmlive.com/"
     }
-}
+}
