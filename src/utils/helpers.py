@@ -52,22 +52,6 @@ class logger:
 
 
 class Waits:
-    """
-    Centralised Playwright wait utilities.
-
-    All methods are @staticmethod because they are pure utility functions —
-    they act on a passed-in `page`/`locator` object but require no instance state.
-
-    Usage:
-        from src.utils.helpers import Waits
-        Waits.for_url(page, "https://example.com/dashboard")
-        Waits.for_visible(page.locator(".my-element"))
-    """
-
-    # ------------------------------------------------------------------ #
-    #  Page-level waits                                                    #
-    # ------------------------------------------------------------------ #
-
     @staticmethod
     def for_url(page, url: str, timeout: int = 30000) -> None:
         """Wait until the page URL matches the given URL exactly."""
@@ -105,10 +89,6 @@ class Waits:
         """
         page.wait_for_timeout(ms)
 
-    # ------------------------------------------------------------------ #
-    #  Locator / element-level waits                                       #
-    # ------------------------------------------------------------------ #
-
     @staticmethod
     def for_visible(locator, timeout: int = 30000) -> None:
         """Wait until the element is visible in the DOM."""
@@ -136,9 +116,6 @@ class Waits:
         from playwright.sync_api import expect
         expect(locator).to_contain_text(text, timeout=timeout)
 
-    # ------------------------------------------------------------------ #
-    #  Page / response event waits                                         #
-    # ------------------------------------------------------------------ #
 
     @staticmethod
     def for_response(page, url_fragment: str, timeout: int = 30000):
